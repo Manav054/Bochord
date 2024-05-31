@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% include 'flash-message.html' %}
+
+{% block body %}
+    {% include 'nav-user.html' %}
+    <h1>{{ section_name }}</h1>
+    {% include 'search-bar.html' %}
+    <h2 class="text-muted">Books</h2>
+    <div class="book_list">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Author</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td>{{ book.name }}</td>
+                    <td>{{ book.author }}</td>
+                    <td><a href="{{url_for('rent', book_id = book.book_id)}}" class="btn btn-primary btn-sm">Rent</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block style %}
+    <style>
+        .heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 40%;
+        }
+        .book_list {
+            padding-left: 12%;
+            padding-right: 10%;
+        }
+        h1,h2 {
+            text-align: center;
+        }
+    </style>
+{% endblock %}

@@ -1,0 +1,13 @@
+<form action="{{url_for('search_results')}}" method="post" style="padding-left: 35%;">
+    <label class="form-label"><strong>Search parameter : </strong></label>
+    <select name="parameter" aria-placeholder="Choose">
+        <option value="name">Name</option>
+        <option value="genre">Genre</option>
+        <option value="author">Author</option>
+    </select>
+    <input type="text" id="query" name="query" placeholder="Search query.." autofocus/>
+    <button type="submit" class="btn btn-primary btn-sm">
+        <i class="fas fa-search fa-xs"></i>
+        Search
+    </button>
+</form>

@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% include 'flash-message.html' %}
+
+{% block body %}
+    {% include 'nav-user.html' %}
+    <h1>User Dashboard</h1>
+    <h2 class="text-muted">My Books</h2>
+    <div class="booklist">
+        <table class="table">
+            <thead>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Days left</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                {% for book, issue in ib %}
+                <tr>
+                    <td>{{book.name}}</td>
+                    <td>{{book.author}}</td>
+                    <td>{{difference(issue.date_return)}}</td>
+                    <td>
+                        <a href="{{book.link}}" class="btn btn-info btn-sm">View</a>
+                        <a href="{{url_for('Return', book_id = issue.book_id)}}" class="btn btn-danger btn-sm">Return</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+{% block style %}
+    <style>
+        .heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 45%;
+        }
+        .booklist {
+            padding-left: 12%;
+            padding-right: 10%;
+        }
+        h1,h2 {
+            text-align: center;
+        }
+    </style>
+{% endblock %}

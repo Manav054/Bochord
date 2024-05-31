@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% include 'flash-message.html' %}
+
+{% block body %}
+    {% include 'nav-admin.html' %}
+    <div class="heading">
+        <h2 class="text-muted">Requests</h2>
+    </div>
+    <div class="booklist">
+        <table class="table">
+            <thead>
+                <th>Username</th>
+                <th>Book name</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                {% for user, book in rbs %}
+                <tr>
+                    <td>{{user.username}}</td>
+                    <td>{{book.name}} </td>
+                    <td>
+                        <a href="{{url_for('grant', book_id = book.book_id, user_id = user.user_id)}}" class="btn btn-success btn-sm">Grant</a>
+                        <a href="{{url_for('revoke', book_id = book.book_id, user_id = user.user_id)}}" class="btn btn-danger btn-sm">Revoke</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block style %}
+    <style>
+        .heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 45%;
+        }
+        .booklist {
+            padding-left: 25%;
+            padding-right: 15%;
+        }
+        h1,h2 {
+            text-align: center;
+        }
+    </style>
+{% endblock %}

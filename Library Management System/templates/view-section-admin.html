@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{% include 'flash-message.html' %}
+
+{% block body %}
+    {% include 'nav-admin.html' %}
+    <h1>{{ section_name }}</h1>
+    <div class="heading">
+        <h2 class="text-muted">Books</h2>
+        <a class="btn btn-success" href="{{url_for('add_book', section_name = section_name)}}">
+            <i class="fas fa-plus fa-xs"></i>
+            Add
+        </a>
+    </div><br>
+    <div class="book_list">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Author</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td>{{ book.name }}</td>
+                    <td>{{ book.author }}</td>
+                    <td><a href="{{ book.link }}" class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><strong>view</strong></a>
+                        <a href="{{url_for('delete_book_from_sections', book_id=book.book_id, section_name=section_name)}}" class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><strong>delete</strong></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block style %}
+    <style>
+        .heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 15%;
+            padding-right: 15%;
+        }
+        .book_list {
+            padding-left: 12%;
+            padding-right: 10%;
+        }
+        h1,h2 {
+            text-align: center;
+        }
+    </style>
+{% endblock %}

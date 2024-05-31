@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% include 'flash-message.html' %}
+
+{% block body %}
+    {% include 'nav-user.html' %}
+    {% include 'search-bar.html' %}
+    <h2 class="text-muted">Genres</h2>
+    <div class="section_list">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for section in sections %}
+                <tr>
+                    <td>{{ section.name }}</td>
+                    <td>{{ section.description }}</td>
+                    <td><a href="{{url_for('view_section_user', section_name = section.name)}}" class="btn btn-info btn-sm"><strong>View</strong></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block style %}
+    <style>
+        .heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 45%;
+        }
+        .section_list {
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+        h1,h2 {
+            text-align: center;
+        }
+    </style>
+{% endblock %}

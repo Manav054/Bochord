@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+
+{% include 'flash-message.html' %}
+
+{% block body %}
+    {% include 'nav-admin.html' %}
+    <h2>Statistics</h2>
+    <form method="post">
+        <select class="form-select" aria-label="Default select example", name="value">
+            <option selected>Please select</option>
+            <option value="1">Number of books VS Users</option>
+            <option value="2">Section Distribution</option>
+        </select><br>
+        <button type="submit" class="btn btn-primary btn-sm">Show</button>
+    </form>
+    <div class="graph">
+        {{ div | safe}}
+        {{ script |safe }}
+    </div><br>
+    <h2 class="text-muted">Issued Books</h2>
+    <div class="booklist">
+        <table class="table">
+            <thead>
+                <th>Username</th>
+                <th>Book Name</th>
+                <th>Days left</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                {% for user, book, issue in ib %}
+                <tr>
+                    <td>{{user.username}}</td>
+                    <td>{{book.name}}</td>
+                    <td>{{difference(issue.date_return)}}</td>
+                    <td>
+                        <a href="{{book.link}}" class="btn btn-info btn-sm">view</a>
+                        <a href="{{url_for('revoke_stats', user_id=user.user_id, book_id=book.book_id)}}" class="btn btn-danger btn-sm">revoke</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+{% block style %}
+    <style>
+        h2 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-left: 15%;
+            padding-right: 15%;
+        }
+        .graph {
+            align-items: center;
+            text-align: center;
+            padding-left: 30%;
+        }
+        .booklist {
+            padding-left: 12%;
+            padding-right: 10%;
+        }
+    </style>
+{% endblock %}

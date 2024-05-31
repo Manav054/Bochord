@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% include 'flash-message.html' %}
+
+{% block body %}
+    {% include 'nav-user.html' %}
+    <h1 class="heading">User Dashboard</h1>
+    <h2 class="text-muted">Rent</h2>
+    <form method="post">
+        <label class="form-label" style="text-align: center;"><strong>Books name : </strong> 
+            <input type="text" class="form-control" placeholder="{{book.name}}" disabled/>
+        </label><br>
+        <label class="form-label" style="text-align: center;"><strong>Author : </strong>
+            <input type="text" class="form-control" placeholder="{{book.author}}" disabled/>
+        </label><br>
+        <label class="form-label" style="text-align: center;"><strong>How many days? Please select between 1-7!</strong>
+                <input type="range" class="form-range" name="days" min="1" max="7" required/>
+        </label><br>
+        <input type="submit" value="Request" class="btn btn-secondary"><br>
+    </form>
+{% endblock %}
+{% block style %}
+    <style>
+        .heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 41%;
+        }
+        form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 50px;
+        }
+        h2 {
+            color: black;
+            margin-top: 64px;
+            text-align: center;
+        }
+    </style>
+{% endblock %}

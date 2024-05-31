@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% include 'flash-message.html' %}
+
+{% block body %}
+    {% include 'nav-admin.html' %}
+    <div class="container">
+        <h2>Add book in {{ section_name }}</h2>
+        <form method="post">
+            <label class="form-label">Name :  
+                <input type="text" name="name" id="name" class="form-control" required />
+            </label><br>
+            <label class="form-label">Author : 
+                <input type="text" name="author" id="author" class="form-control" required />
+            </label><br>
+            <label class="form-label">Link : 
+                <input type="url" name="link" id="link" class="form-control" required />
+            </label><br>
+            <input type="submit" value="submit" class="btn btn-outline-success"><br>
+        </form>
+    </div>
+{% endblock %}
+
+{% block style %}
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid lightseagreen;
+            border-radius: 15px;
+            padding: 50px;
+            
+        }
+        h2 {
+            color: rgb(80, 64, 2);
+            margin-top: 64px;
+            text-align: center;
+        }
+    </style>
+{% endblock%}
