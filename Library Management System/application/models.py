@@ -2,12 +2,6 @@ from .database import db
 from datetime import datetime, timedelta
 from werkzeug.security import generate_password_hash, check_password_hash
 
-class Librarian(db.Model) :
-    __tablename__ = "librarian"
-    username = db.Column(db.String(50), primary_key = True, nullable = False, unique = True)
-    password = db.Column(db.String(50), primary_key = True, nullable = False, unique = True)
-
-
 class User(db.Model) :
     __tablename__ = "user"
     user_id = db.Column(db.Integer, primary_key = True, autoincrement = True, nullable = False)
